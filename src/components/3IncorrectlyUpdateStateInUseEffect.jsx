@@ -18,7 +18,7 @@ const IncorrectlyUpdateStateInUseEffect = () => {
     },[]);
 
   return (
-    <div>{number}</div>
+    <div>{number}adasdsa</div> // if you add any text after {number}asdadas -- then the above will become worst and it re-render without cleaning the function
   )
 }
 
