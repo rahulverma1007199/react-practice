@@ -29,3 +29,27 @@
 // layout and components -- in layout we generally add common components and we can create different layout for different routes and we can create individual layout inside just add to that folder layout.jsx file.
 
 // as for page we are bound to use page.jsx but for component we can name anything to file.
+
+//for link we use <Link> tag and pass href in parameter
+
+// we can add loading.jsx and error.jsx in each file to customised the layout, also layout.jsx too.
+
+// NEXT RENDERING
+// we have two type of rendering SSR and CSR, by default in next js we have SSR. and to change any page to render at client use at the very top "use client" and that page.jsx
+
+// to create event we have to use CSR, so when we need user interation like for navbar or for login we use CSR
+
+// NEXT STYLING
+// we use global.css for common element, link anchor tag, and can use for layout.js.
+// and for specific we create -- page.module.css and we use 'import styles from './page.module.css'
+// and we use className={styles.<className>}
+
+// IMAGES
+// we use <Image /> tag , we always put our images in public folder and we always provide width and height property OR set 'fill={true}' as it also helps for lazy loading. but if you set fill to true as in that case we don't really need to define width and height because it comes from parent imgContainer div, then make sure to add position relative to the parent image div aka imgContainer
+
+// there are two way to use images in src of Image tag, one is '/1.jpg' or image as component just like react
+
+// importing images like component does not require fill or width and height property. but it is recommedn to use path directly than to import component,
+
+// to add external image we have to add that domain in next.config.js
+
