@@ -47,9 +47,32 @@
 // IMAGES
 // we use <Image /> tag , we always put our images in public folder and we always provide width and height property OR set 'fill={true}' as it also helps for lazy loading. but if you set fill to true as in that case we don't really need to define width and height because it comes from parent imgContainer div, then make sure to add position relative to the parent image div aka imgContainer
 
+// we set parent position of image item is relative and set object-fit and other properties into the Image class div.
+
 // there are two way to use images in src of Image tag, one is '/1.jpg' or image as component just like react
 
 // importing images like component does not require fill or width and height property. but it is recommedn to use path directly than to import component,
 
 // to add external image we have to add that domain in next.config.js
+
+// to implement a linear grade effect onto text, give p tag linear gradient in backgrund and use  -webkit-background-clip: text; -webkit-text-fill-color: transparent ;
+
+// if sometime button background colour is spreading full width then just use width : max-content;
+// to give an <img /> black and white effect use filter property in its classname -- filter:grayscale(100%) 
+
+// object-fit : contain vs cover , cover cut the image as to fit properly in div but contain not cut.
+
+// to know -- how to setup a layout -- visit portfolio folder.
+
+// to give multiple children differnt bg based on their nth location -- see portfolio.module.css
+// .item:nth-child(3){any property} // where we have multiple item in .items div.
+
+// in next , in order to get content inside public folder -- use "/<name of file>"
+
+// .item:hover .title {bgc change} ... it means when we hover item the title color will change.
+
+
+// for Image,Link we use next js item. 
+
+// So seprating a div (.item ) in half and in left half we have text and right half we have image now we want same div to be reverse that too with css, .item:nth-child(2n){ flex-direction:row-reverse } -- 2n means even and 2n+1 means every odd number. 
 
