@@ -5,6 +5,7 @@ const UseStateVsUseReducer = () => {
     // Though there is no right and wrong time as to when you useState and useReducer but sometimes useReducer has more advantages
 
     // if you have a more complex object that have different properties then it's better to use useReducer and when you update different properties then it will be really messy and the object is in different types and it will be not easy to update them in the one function as in the 4.ChangeAllInput. as spread operator will be not helpful in these situation
+    // so it's better to use useReduce and using different actions for each changes might be more useful here
     // though he didn't teach here how to use useReducer
 
     // also if one state effect another one, just store its ID, instead of creating a new object inside
