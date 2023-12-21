@@ -50,7 +50,7 @@ const RotateArray = () => {
 
     //foruth approach 
     // Using Array.slice() and the spread operator (...):
-    function rotateArray(arr, k) {
+    function rotateArray2(arr, k) {
         const len = arr.length;
         k %= len;
       
@@ -58,9 +58,27 @@ const RotateArray = () => {
         return rotatedArray;
       }
       
-      const originalArray = [1, 2, 3, 4, 5];
-      const rotatedArray = rotateArray(originalArray, 2);
-      console.log(rotatedArray); // Output: [3, 4, 5, 1, 2]
+      const rotatedArray2 = rotateArray2(originalArray, 2);
+      console.log(rotatedArray2); // Output: [3, 4, 5, 1, 2]
+      
+    //fifthe approach using loop
+    function rotateArray3(arr, k) {
+        const len = arr.length;
+        k %= len;
+      
+        for (let i = 0; i < k; i++) {
+          const temp = arr[0];
+          for (let j = 0; j < len - 1; j++) {
+            arr[j] = arr[j + 1];
+          }
+          arr[len - 1] = temp;
+        }
+      
+        return arr;
+      }
+      
+      const rotatedArray3 = rotateArray3(originalArray, 2);
+      console.log(rotatedArray3); // Output: [3, 4, 5, 1, 2]
       
   return (
     <div>RotateArray</div>
