@@ -1,4 +1,4 @@
-import MoveUpDown from "./problem/1MoveUpDown";
+import MoveUpDown from "./problem/Array/1MoveUpDown";
 
 
 function App() {
