@@ -5,7 +5,7 @@ type UserType = {
     name:string
 }
 
-const page = () => {
+const Page = () => {
     const [username,setUsername] = useState("");
     const [user,setUser] = useState<UserType | null >(null);
     // if we don;t use generic the we get error in handleClick function becuase we define it to null.
@@ -33,4 +33,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
