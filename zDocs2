@@ -1,0 +1,19 @@
+In TDD
+we write test cases that get failed first and then make them sucess and then refactor them aka improvise
+
+TO efficiently coverage the app we have 3 type of test cases
+
+- Unit test- can give code coverage but code assurance comes from E2E
+    its great for
+    - Pure Function
+    - Core business logic - like for payment
+    - anything that is critical
+
+- E2E test -
+    for this use cypress
+    best for how many action can use takes
+    like login & payment test
+
+- Integration test - where mocking is needed
+    like lots of db call, api
+    basically anything is between unit & e2e

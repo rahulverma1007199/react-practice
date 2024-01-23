@@ -1,0 +1,37 @@
+TDD
+RED Green and refactor
+
+In interview to build - dynamic time warping algorithms to measure the similarities between two sequences in logarithmic time
+
+Instead freaking out say - let me write a few test caes for that 
+This will buy you some time - and make you look like what you doing 
+
+TEST DRIVEN development is a technique where you describe the behaviour of our code before we go and implement it 
+
+Testing help reduce bugs and improve the maintainability of code in long run
+
+Testing has a very fine line between  total waste if time or value 
+
+In TDD we write our test before we implement our code 
+
+Where we follow red green refactor approach 
+
+Where failing test will implement first and then write code to make it passing and then we go back and refactor and optmise the code 
+
+Not always a practical solution but if we have a project with specific requirements then its better to use tdd
+
+Types of testing
+- low level - unit testing - goal is to validate the behaviour of individual functions, methods or just units of code 
+- Next level - integration testing - testing multiple units of code together 
+- Like first individual testing if a react component and a hook that fetches data - aka unit teating and then doing integration testing 
+- End to end testing - run app in simulated environment and attempt to emulate actual user behaviour- a tool called cypress that has browser based test runner 
+
+Others are - acceptance testing - test client or user’s requirements 
+
+System testing - works on real hardware 
+
+Smoke test - run important task first and then test rest of the test 
+
+And all the above known as functional testing and non functional includes - performance, usability and security 
+
+Stress testing- to test infrastructure as oppose to code 
