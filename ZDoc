@@ -1,18 +1,19 @@
-Docker 
-Environment replication 
-Imagine we are backend developer- we build node js server locally where we install node js 16 , redis , postgree and 2 more things 
+# Docker
+
+Used for environment replication 
+Imagine we are backend developer- we build node js server locally where we install node js 16 , redis , postgres and 2 more things 
 
 Now this app is working fine 
 
-But when we share this app to other - like git pull - then that user also have to install these versions of software.
+But image app is dependent of specific version of a library and  we share this app to others - like a user do git pull - then that user also have to install the same version of software.
 
-And if our app depends on that specific version then that person also have to intsall the same but the other person working on something esle that in dependent on other version of a software and this might cause issues in one or another server .
+As our app depends on that specific version then that person also have to intsall the same but the other person working on something else and that is dependent on other version of a software and this might cause issues in one or another server .
 
-As when we build we create a development environment but when we share then creating the same development environment is difficult and it might be possible to miss something which results in other development but not in the somewhere else .
+As when we build we create a development environment but when we share then creating the same development environment is difficult and it might be possible to miss something which results in development issues
 
 To resolve this we have docker
 
-Rather than install or creating environment locally you can create a container and create your environment here and if you want to share then just share the copy of this container irrespective of os. As docker  has its own image 
+Rather than install or creating environment locally you can create a container and create your environment there and if you want to share then just share the copy of this container, this works irrespective of OS. As docker has its own image 
 
 But it is not same as virtual box machine 
 
@@ -33,61 +34,59 @@ Registry Aka github for docker
 - 2 type - daemon - main work , desktop - gui - show states
 - To run ubuntu container 
 - Terminal- docker run -it ubuntu 
-- If there will be no u ubuntu image then it will install automatically 
+- If there will be no ubuntu image then it will install automatically 
 - To verify check in images in docker desktop
 - Docker run use to create new containers 
 - Hub.docker.com - have all our public containers 
 
-Images vs containers
+# Images vs containers
 
 Images are like an operating system and to run images we need containers 
 
 We can run single image in multiple containers and all containers are isolated 
 
-For development we create a custom image which has likr ubuntu , node js, mongo db and etc depending on the requirements and we can create custom image and this same custom image can be used for other developers 
+For development we create a custom image which has like ubuntu , node js, mongo db and etc depending on the requirements and this same custom image can be used by other developers 
 
 To list all runing docker containers 
 - docker container ls
 - docker container ls -a — for all even if its close
-- docker start <docker_name>
-- docker stop docker_name
+- docker start <container_name>
+- docker stop <container_name>
 - docker run for new container
 - docker exec container_name command_name like ls
 - docker exec -it container_name bash
 - docker images - list of all images
 - Or docker images ls
 
-Port mappings
+# Port mappings
 
 Like in node js - we create a container and runs on 8000 port but that port is only inside the container and doesn’t have an access in our browser 
 
 And to expose - 
-for that 
-docker run -it -p 1025:1025 image_name - where first is your port and another is machine port aka container port
+   docker run -it -p 1025:1025 image_name - where first is your port and another is machine port aka container port
 
-Environment variable 
+# Environment variable
 docker run -it -e key=value -e so on 
 We can use multiple -e if we have multiple env variables 
 
 
-Node js with docker
+# Node js with docker
 First create a node js server locally 
 Then add Dockerfile - 
+   FROM ubuntu
+   RUN apt-get update
+   RUN apt-get install -y curl
+   RUN curl 
+   RUN - basically a basic version to install node
+   then 
+   <COPY src desc>
+   COPY package.json package.json
+   And same for packagelock and main index
+   RUN npm install
 
-FROM ubuntu
-RUN apt-get update
-RUN apt-get install -y curl
-RUN curl 
-RUN - bassically a basic version to install node ha
-then 
-copy src desc
-COPY package.json package.json
-And same for packlock and main index
-RUN npm install
+   ENTRYPOINY [ “node” , “main.js”]
 
-ENTRYPOINY [ “node” , “main.js”]
-
-Then in terminal- docker build -t image_name  Dockerfile_path
+Then in terminal - docker build -t image_name Dockerfile_path
 
 Refresh image and you will see image in docker dashboard 
 
@@ -95,7 +94,7 @@ Refresh image and you will see image in docker dashboard
 
 If we change the above from ubuntu to node then we don’t need to install node aka we can remove node install command but always be careful while choosing images
 
-Caching 
+# Caching 
 
 In dockerfile the order to command is very important aka the one which are prone to changes the most should be kept at the bottom - so that above command should be cached
 
@@ -109,13 +108,13 @@ Create repository- name of image
 
 Build an image from the command
 
-Docker push image_name
+   docker push image_name
 
-If go logon error
-Docker login
+If go login error
+   docker login
 And then docker push with image_name
 
-Docker Compose
+# Docker Compose
 In real world development we have multiple containers- like one for mysql , mongo , redis 
 
 And to run the code for each machine is hard
@@ -124,7 +123,7 @@ So with docker compose we can setup , create and destroy multiple containers
 
 For that we create docker-compose.yml
 
-version: “3.8” 
+version: “3.8” - this version is of docker-compose
 services : 
    postgre: 
     image: postgress // from hub.docker.com
@@ -136,27 +135,28 @@ services :
  
 
   Redis :
-    Image : dame as other
+    image : Same as above
 
 
 In terminal 
    docker compose up
+
 If denied then use with sudo
 
-Docker compose down - remove 
+Docker compose down -> remove 
 docker compose up -d // meaning detach aka means run in bachground
 To down run down command
 
-To give docker a name use —name falg
-docker run -it —name my_contianr image_name
+To give docker a name use —name flag
+docker run -it —name my_container image_name
 
-Docker networking 
+# Docker networking 
 By default is bridge mode like if we do ping google.com then that connect is done in bridge mode
 
-To check which container are using brider 
+To check which container are using bridge 
 
 Run - docker network inspect bridge 
-And in container you will get list of running containers using bridge
+And you will get list of running containers using bridge
 
 Bridge is between your machine to docker for internet connection 
 
@@ -170,58 +170,55 @@ Host -
 Like running a command explicit network - 
 docker run -it —network=host image_name
 
-Host - meaninf this does not have a bridge rather directly connected to our machine 
+Host - meaning this does not have a bridge rather directly connected to our machine 
 
 Diff- 
-In host mode we don’t need to do port mapping as jn host it using our port so not needed but in bridge it do
+In host mode we don’t need to do port mapping as in host it using our port so not needed but in bridge it is
 
 None —network=none - then that container has no internet
 
 
 To create custom network
 
-docker network create -d bridge nameofnetwokr // we can do it host as d flad means default
+docker network create -d bridge nameofnetwork // we can do it host as d flag means default
 
 So if we have multiple containers with same network name then they both can communicate with each other 
 
 From one container
 ping other_container_name
 
-We can ping with ip_address but name is preder as ip addres can change in production 
+We can ping with ip_address but name is easy as ip addres can change in production 
 
-Volumn mounting 
- So when we create a container it has some memory and when the down the container so does its data
+# Volume mounting 
 
-Basically so bhi custom file hogi vo delete ho jayegi 
+ So when we create a container it has some memory and when the down container so does its data
+
+Basically jo bhi custom file hogi vo delete ho jayegi 
 
 To prevent this we have docker volume 
 
 Here we mount a particular directory in docker 
 
-For volumebr we bave -v
+For volume we have -v
 docker run -it -v pwd_of_desired_folder:/home/abc ubuntu 
 
 To create volumne - reading docs
 
 Basically the idea is rather than explicitly telling with pwd we can create
 
-Volume has because we dont want to lose our data
+Volume - because we dont want to lose our data
 
-Efficient caching
+# Efficient caching
 So in Dockerfile - each command is known as layer and all of them are layers
 
-Like a from layer
+Like from layer
 Run layer
 Copy layer
 
 Here we have to make sure the order of layer 
-To Copy everything in Dockerfile - “use COPY . .” this will copy all the file and if you want to copy everything then just like gitignore create “.dockerignore” and add file there
+To Copy everything in Dockerfile - use "COPY . ." this will copy all the file and if you don't want to copy everything then just like .gitignore create “.dockerignore” and add file there
  SO Set a working directly and to tell this to docker — add “WORKDIR </directorypath>” but remember whatever below workdir command - like all other command run relative to that path
 The above is about Caching 
 Docker Multistage build
 DIY
 Pending - Bonus : Amazon Elastic Container Service and ECR
-
-	●	front-end 
-	●	delivery preference -manish
-	●	round up - php - 
