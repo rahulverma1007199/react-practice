@@ -4,6 +4,7 @@ Basic
     - docker and tdd and typescript
     - useState and useReducer
     - useContext and useRedux
+    - sessionStorage
 
 Design
     - loading screen
