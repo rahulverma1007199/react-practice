@@ -1,11 +1,10 @@
-import UseStateVsUseReducer from "./Component/5.UseStateVsUseReducer";
 
 
 function App() {
  
   return (
     <div>
-      <UseStateVsUseReducer />
+    Test
     </div>
   );
 }
