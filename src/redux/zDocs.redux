@@ -1,0 +1,16 @@
+So rather than props drilling we can use state management tool
+    - Context Api - it depend upon whole state
+    - Redux 
+        - read offical documentation to install
+        - install redux toolkit and redux
+        - also install react-redux
+
+we wrap the app in index.js
+
+for select we use useSelectore
+for dispatch we use useDisptach
+
+how check - use chrome "redux DevTools" extension
+
+
+rather than craete pending error state in redux we can use thunk - use the first one to have better control and for faster use lattar one
