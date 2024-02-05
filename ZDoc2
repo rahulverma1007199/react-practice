@@ -1,0 +1,181 @@
+INTRO
+This is more focus on the working part as no theory in this documentation
+
+Download Docker
+
+To create an Image we use DockerFile
+
+where 
+FROM : is use for base image to new image
+WORKDIR: working directory
+COPY
+RUN - run commands during shell build 
+EXPOSE : use for exposing port
+ENV - sets the env variables
+ARG - defines build type variables 
+VOLUME - connection external storage
+CMD - 
+ENTRYPOINT - different to cmd as cmd can be flexible and overwritten where it can’t be overwritten
+
+TESTING
+in the folder of vscode right - docker pull ubuntu and to confirm check in the image section of docker
+to run a container - docker run -it  ubuntu
+
+TO CREATE OWN IMAGE
+in the directory create - Dockerfile - in the file
+FROM node:20-alpine
+WORKDIR /app
+COPY . . - two dots first representing the current and another in the docker
+CMD node hello.js - create a file and clg anything
+in the terminal - docker build -t <image_name>  .(dot)
+to check - docker images
+docker run <image_name>
+docker run -it <image_name> sh
+
+
+Creating React with docker
+in vs code - npm create vite@latest ./  - react - typescript
+create Dockerfile
+# set the base image to create the image for react app
+FROM node:20-alpine
+
+# create a user with permissions to run the app
+# -S -> create a system user
+# -G -> add the user to a group
+# This is done to avoid running the app as root
+# If the app is run as root, any vulnerability in the app can be exploited to gain access to the host system
+# It's a good practice to run the app as a non-root user
+RUN addgroup app && adduser -S -G app app
+
+# set the user to run the app
+USER app
+
+# set the working directory to /app
+WORKDIR /app
+
+# copy package.json and package-lock.json to the working directory
+# This is done before copying the rest of the files to take advantage of Docker’s cache
+# If the package.json and package-lock.json files haven’t changed, Docker will use the cached dependencies
+COPY package*.json ./
+
+# sometimes the ownership of the files in the working directory is changed to root
+# and thus the app can't access the files and throws an error -> EACCES: permission denied
+# to avoid this, change the ownership of the files to the root user
+USER root
+
+# change the ownership of the /app directory to the app user
+# chown -R <user>:<group> <directory>
+# chown command changes the user and/or group ownership of for given file.
+RUN chown -R app:app .
+
+# change the user back to the app user
+USER app
+
+# install dependencies
+RUN npm install
+
+# copy the rest of the files to the working directory
+COPY . .
+
+# expose port 5173 to tell Docker that the container listens on the specified network ports at runtime
+EXPOSE 5173
+
+# command to run the app
+CMD npm run dev
+
+also create .dockerignore - node_module/
+docker build -t react-docker .
+docker run react-docker
+docker run -p 5173:5173 react-docker - first the our machine port and second in docker
+it runs great if not - in package.json - “dev” : ‘vite –host“
+rebuild the image
+and run the container again - if got error because another docker in listening to the same port
+docker ps - to check all running contains
+docker ps -a - for all the container
+docker stop <name or id of docker container> - if using id you can just use the initial 3 or up-to all length 
+docker container prune
+docker rm <id of container> - if the container is running use –force
+
+Delete all the volume, images, and container - aka start fresh
+build image
+docker run -p 5173:5173 react-docker
+if you change anything in the code and didn’t get the result in the update app
+stop the container
+ docker run -p 5173:5173 -v “$(pwd) :/app” -v /app/node_modules react-docker
+here we connect the volume
+
+TO PUBLISH
+docker login
+docker tag react-docker <user-name>/<name of the image>
+docker push <user-name>/<name-of-the-image>
+to verify
+hub.docker.com
+under repositories
+
+Docker Compose
+read in depth about it
+npm create vite@latest vite-project - react - typescript
+docker init - Node - recommended version - npm - n for build - npm run dev - 5173
+create 3 file
+.dockerignore - Dockerfile - compose.yaml
+paste the Dockerfile from previous to this one
+in the compose.yaml
+# define the services/containers to be run
+services:
+  # define the application container/service
+  # We can use any name for the service. Here it is `web`
+  # we can create multiple services as well
+  web:
+    # specify the image to build the container from
+    # this can be any image available in docker hub or a custom one or the one we want to build
+    build:
+      # specify the path to the Dockerfile
+      context: .
+      # specify the file name (optional)
+      dockerfile: Dockerfile
+    
+    # specify the port mapping from host to the container
+    # this is similar to the -p flag in `docker run` command
+    # first port is the port on host machine and the second is the port inside the container
+    ports:
+      - 5173:5173
+
+
+    # specify the volumes to mount
+    # what this does is it mounts the current directory to the `/app` directory inside the container. 
+    # due to this, any changes made to the files in the current directory will be reflected inside the container. It is similar to the -v flag in `docker run` command. 
+    # even if a container is stopped or deleted, volumes are not deleted and can be used by other containers as well.
+    volumes:
+      # over here, we are mounting the current directory to the `/app` directory inside the container (which is the working directory of the container)
+      # syntax is `<path to the directory on host>:<path to the directory inside the container>`
+      # we're doing this because we want to reflect the changes made to the files in the current directory inside the container
+      - .:/app
+      # we also mount the node_modules directory inside the container at /app/node_modules. This is done to avoid installing the node_modules inside the container. 
+      # node_modules will be installed on the host machine and mounted inside the container
+      - /app/node_modules
+
+
+after this 
+run - docker compose up - to not running - use with sudo
+
+Docker compose watch
+in react-practice - reactDocker and nextDocker - branch you will have a code
+
+Create a real world example
+create a front-end folder and add Dockerfile - create .dockerignore
+and make a back-end folder - and create the same two above file
+in the root - compose.yaml
+here we are running 3 services - web, api and db
+in terminal - sudo docker compose up
+in another parallel terminal - sudo docker compose watch
+for testing - in the backend - npm i colors
+
+first check the frontend 
+and then backend
+
+for testing use docker scout
+
+Docker the next project
+create the application with docker init
+
+
