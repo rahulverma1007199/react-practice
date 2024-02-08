@@ -1,0 +1,44 @@
+JS Mastery
+
+Transforming Design Into Full function app in next js and tailwind
+    in this we can 
+        - search
+        - filter by area
+        - property list with pagination
+        - superbase to automatically fetch apis
+
+we need a figma design and we draft that design
+    install plugins in figma
+    - locofy
+        create a project - framework to be any things - (author choose next js)
+            also choose javascript, tailwind, px, kebab case
+
+    follow the below steps
+    1. Optimise Design 
+        select a page and optimise
+        this is realted to figma design so make to go to each page and check the responsive too
+    2. tag interactive elements
+        in figma every thing is rectangle so we have to tag elements like button, 
+        for auto tag - it is easy
+        for manual tag - just click the element and add the property
+        we can also add links
+    3. Editing styling and layout
+        configue style like hover or custom break points - aka responsive
+        to fix - click the container and change the figma property
+        navbar related fix will be also done here
+    4. Adding action
+        now as our design is reponsive and styled
+        here we add click action - like open url, change page
+        select a button
+    5. sync to locofy builder
+    6. create components
+        review ai create components
+    7. Configure Code
+        Title, meta desc
+        change the project into typescript
+    8. Export/sync with github
+
+    import code locally and fix it
+
+
+    Using SuperBase for database and storage

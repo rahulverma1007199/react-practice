@@ -1,0 +1,37 @@
+
+Figma best practices for high-quality code with Locofy 
+
+    Use of Images/Rectangles in Buttons, Inputs, Cards
+        Button
+            never desgin a button like - recentange then text and group them
+            make sure have to correct padding
+            for better practive
+                grabe a frame  give it fill and border radius - add text - select both - apply auto layer
+        Same for input
+        Images in Card
+            remove blank rectange and auto layout 
+            basically the goal is to reduce the layers
+    
+    Best Practices for Text Layers
+        for single words/line use auto-width and apply auto layout to frame
+        for multie text - use auto heigth
+
+
+    Best Practices for Lines and Borders
+        rather than creating actual lines create border
+
+
+    Using Components for Scalable design
+        Try to use component
+
+    Best Practices for Structuring your design
+        Remove unnecessary groups/frames
+        use frame intest of group
+            why beacuse we can apply autolayout to frames
+
+        frame up items accordding to different section
+        apply auto layout and responsieness constraints
+
+    Layer naming for better code
+        layer your framer accordinly
+    Upcoming updates for auto-best practices

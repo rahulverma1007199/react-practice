@@ -1,0 +1,29 @@
+Responsiness
+    
+    Locofy approach to responsiveness
+        try using fill-container
+        use locofy direction - as for differnt screen size
+
+    Figma Auto Layout Basics
+        auto layout has two direction horizontal or vertically
+        and alignment
+        padding and space between
+        absoulte position
+    
+        after applying the above setting as per requirement how to manage responsiveness
+            each frame container we applies auto layout and contraints
+
+
+
+    Common use cases
+        to check responsiveness - resize that frame
+
+    Navigation Bar
+    
+    Hero section with background image
+    
+    2 column section with floating elements
+    
+    Complex layouts
+    
+    Applying responsive settings to an existing design
